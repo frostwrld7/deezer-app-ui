@@ -22,9 +22,14 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
+        tabBarStyle: { 
+          position: 'absolute', // position absolue pour sortir la barre de l'écran
+          bottom: -1000, // déplace la barre en dehors de l'écran
+          width: '100%', // assurez-vous qu'elle prend toute la largeur
+          backgroundColor: 'transparent', // rendre la barre de navigation transparente
+        },        // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        headerShown: useClientOnlyValue(false, false),
       }}>
       <Tabs.Screen
         name="index"
@@ -50,7 +55,6 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
